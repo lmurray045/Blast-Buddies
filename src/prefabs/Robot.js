@@ -1,4 +1,4 @@
-class Robot extends Phaser.GameObjects.Sprite {
+class Robot extends Phaser.Physics.Arcade.Sprite {
     
     preload() {
         
@@ -9,6 +9,6 @@ class Robot extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        
+
     }
 }

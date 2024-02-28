@@ -1,6 +1,18 @@
 ### To Do List for Blast Buddies
 
-# Goal Post One [Completed: ]
-[] Make file system
-[] Make scenes
-[] Initial Commit
+# Goal Post Two
+[X] Make Tileset 
+[X] Make tile map in tiled
+[X] get level one on screen
+[] make various assets
+    [X] player
+    [] enemy
+    [X] platform
+    [] lava
+[] Add player input
+[] Make prototype Menu
+
+# Goal Post One [Completed: 2/22/24]
+[X] Make file system
+[X] Make scenes
+[X] Initial Commit
