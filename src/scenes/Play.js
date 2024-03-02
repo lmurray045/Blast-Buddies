@@ -22,8 +22,17 @@ class Play extends Phaser.Scene {
         //add p1
         const p1spawn = map.findObject('objects', (obj) => obj.name === 'Player One')
 
+        //p1 keys
+        this.KEYS = this.scene.get('keyScene').KEYS
+        // this.keys.WKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
+        // this.keys.AKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
+        // this.keys.DKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
+        // this.keys.EKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
+
         this.p1 = new Player(this, p1spawn.x, p1spawn.y, 'p1sheet', 0, 'idle', 1)
-        this.p1.setGravityY(100)
+        this.p1.setGravityY(1000)
+        this.p1.body.setAllowDrag(true)
+        this.p1.body.setDragX(1000)
 
         //camera bounds
         this.cameras.main.setViewport(0, 0, map.widthInPixels, map.heightInPixels)
@@ -37,6 +46,6 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-
+        this.playerFSM.step()
     }
 } 
