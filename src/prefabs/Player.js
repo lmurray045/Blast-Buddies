@@ -6,14 +6,16 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         //physics parameters
         this.body.setCollideWorldBounds(true)
-        this.setGravityY(1000)
+        //this.setGravityY(1000)
         this.body.setAllowDrag(true)
         this.body.setDragX(500)
-        this.body.setMaxVelocityX(100)
+        this.body.setDragY(500)
+        this.body.setMaxVelocityX(150)
 
         //set properties
         this.direction = direction
         this.moveSpeed = 500
+        this.jumpHeight = 500
         this.shotCooldown = 100
         this.pnum = pnum
 
@@ -32,14 +34,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     update() {
 
     }
-
-    vector
 }
 
 class IdleState extends State {
     enter(scene, player) {
+        console.log('idle state')
         player.setAcceleration(0)
-        player.anims.play(`p1_idle`)
+        player.anims.play(`p1_idle`, true)
     }
 
     execute(scene, player) {
@@ -95,16 +96,18 @@ class RunState extends State {
         //move player
         let playerVector = new Phaser.Math.Vector2(0, 0)
         //left and right
-        player.play('p1_run')
+        player.anims.play('p1_run', true)
         if(this.KEYS.P1_LEFT.isDown) {
             playerVector.x = -1
+            player.flipX = false
         }
         else if(this.KEYS.P1_RIGHT.isDown) {
             playerVector.x = 1
+            player.flipX = true
         }
 
         //apply Acceleration
-        player.setAcceleration(player.moveSpeed * playerVector.x, player.moveSpeed * playerVector.y)
+        player.body.setAcceleration(player.moveSpeed * playerVector.x, player.moveSpeed * playerVector.y)
         
     }
 }
@@ -112,9 +115,53 @@ class RunState extends State {
 class JumpState extends State {
     enter(scene, player) {
         console.log("jump state")
+        this.jumped1 = false
+        this.jumped2 = false
     }
 
     execute(scene, player) {
+        this.KEYS = scene.KEYS
+        //jump once
+        if(this.jumped1 == false) {
+            player.setVelocityY(player.jumpHeight * -1)
+            player.anims.play('p1_jump', true)
+            this.jumped1 = true
+        }
+
+        //double jump
+        // if(Phaser.Input.Keyboard.JustDown(this.KEYS.P1_JUMP) && this.jumped2 == false) {
+        //     player.setVelocityY(player.jumpHeight * -1)
+        //     player.anims.play('p1_jump', true)
+        //     this.jumped2 = true
+        // }
+        
+        //a/e to run
+        if(this.KEYS.P1_LEFT.isDown || this.KEYS.P1_RIGHT.isDown) {    
+            //move player
+            let playerVector = new Phaser.Math.Vector2(0, 0)
+            //left and right
+            if(this.KEYS.P1_LEFT.isDown) {
+                playerVector.x = -1
+                player.flipX = false
+            }
+            else if(this.KEYS.P1_RIGHT.isDown) {
+                playerVector.x = 1
+                player.flipX = true
+            }
+
+            //apply Acceleration
+            player.body.setAcceleration(player.moveSpeed * playerVector.x, player.moveSpeed * playerVector.y)
+        }
+
+        //e to shoot
+        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P1_SHOOT)) {    
+            this.stateMachine.transition('jumpshoot')
+            return
+        }
+
+        if(player.body.onFloor() == true) {
+            this.stateMachine.transition('idle')
+        }
 
     }
 }

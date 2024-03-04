@@ -29,7 +29,7 @@ class Play extends Phaser.Scene {
         // this.keys.DKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
         // this.keys.EKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
 
-        this.p1 = new Player(this, p1spawn.x, p1spawn.y, 'p1sheet', 0, 'idle', 1)
+        this.p1 = new Player(this, p1spawn.x, p1spawn.y, 'p1sheet', 0, 'right', 1)
         this.p1.setGravityY(1000)
         this.p1.body.setAllowDrag(true)
         this.p1.body.setDragX(1000)

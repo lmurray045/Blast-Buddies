@@ -22,7 +22,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p1_run",
             repeat: -1,
-            framerate: 8,
+            framerate: 1,
             frames: this.anims.generateFrameNumbers('p1sheet', {
                 start: 1,
                 end: 6
