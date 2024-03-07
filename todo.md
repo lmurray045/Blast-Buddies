@@ -16,3 +16,7 @@
 [X] Make file system
 [X] Make scenes
 [X] Initial Commit
+
+# Debug
+ [] idle animation plays over others
+ [] framerate for anims VERY high

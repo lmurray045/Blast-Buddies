@@ -15,8 +15,8 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
-            gravity: { y: 1000 }
+            //debug: true,
+            //gravity: { y: 1000 }
         }
     },
     zoom: 2,

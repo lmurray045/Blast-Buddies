@@ -14,6 +14,10 @@ class Load extends Phaser.Scene {
             frameWidth: 16,
             frameHeight: 16
         })
+        this.load.spritesheet('bullet', 'bullet.png', {
+            frameWidth: 8,
+            frameHeight: 8
+        })
         this.load.tilemapTiledJSON('tilemapJSON', 'lvl1.json')
     }
 
