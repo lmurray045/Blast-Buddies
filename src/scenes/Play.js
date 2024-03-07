@@ -26,14 +26,37 @@ class Play extends Phaser.Scene {
         //add p1
         const p1spawn = map.findObject('objects', (obj) => obj.name === 'Player One')
 
+        //add p2
+        const p2spawn = map.findObject('objects', (obj) => obj.name === 'Player Two')
+
         //p1 keys
         this.KEYS = this.scene.get('keyScene').KEYS
     
+        //player group
+        this.playerGroup = this.add.group({
+            runChildUpdate: true
+        })
 
-        this.p1 = new Player(this, p1spawn.x, p1spawn.y, 'p1sheet', 0, 'right', 1)
+        //players
+        this.p1 = new Player1(this, p1spawn.x, p1spawn.y, 'p1sheet', 0, 'right', 1)
         this.p1.setGravityY(2000)
         this.p1.body.setAllowDrag(true)
         this.p1.body.setDragX(1000)
+
+        this.p2 = new Player2(this, p2spawn.x, p2spawn.y, 'p2sheet', 0, 'right', 1)
+        this.p2.setGravityY(2000)
+        this.p2.body.setAllowDrag(true)
+        this.p2.body.setDragX(1000)
+
+        //player group
+        this.playerGroup = this.add.group({
+            runChildUpdate: true
+        })
+        this.playerGroup.add(this.p1)
+        this.playerGroup.add(this.p2)
+
+        //health
+
 
 
         //camera bounds
@@ -44,14 +67,28 @@ class Play extends Phaser.Scene {
         //physics and colliders
         this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
         this.physics.add.collider(this.p1, terrainLayer)
+        this.physics.add.collider(this.p2, terrainLayer)
 
         //bullets
         this.physics.add.collider(this.bulletGroup, terrainLayer, (bullet) => {bullet.destroy()})
 
+        //players and bullets
+        this.physics.add.collider(this.bulletGroup, this.playerGroup, (bullet, player) => {
+            bullet.destroy()
+            player.hp -= 1
+            player.hp_sprite.anims.play(`health_${player.hp}`)
+            if(player.hp == 0) {
+                player.destroy()
+            }
+        })
+
+
+
     }
 
     update() {
-        this.playerFSM.step()
+        this.player1FSM.step()
+        this.player2FSM.step()
     }
 
 } 

@@ -11,7 +11,7 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
 
         //set properties
         this.direction = 0
-        this.moveSpeed = 1000
+        this.moveSpeed = 500
 
 
         if(direction == 'left') {
@@ -20,7 +20,6 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
         else {
             this.direction = 1
         }
-        console.log(direction)
 
         scene.bulletGroup.add(this)
 
@@ -35,7 +34,9 @@ class Bullet extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
-
+        if(this.body.onWall() == true) {
+            this.destroy()
+        }
     }
 
 }

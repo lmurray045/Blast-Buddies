@@ -9,7 +9,8 @@
     [] enemy
     [X] platform
     [] lava
-[] Add player input
+    [x] bullet
+[x] Add player input
 [] Make prototype Menu
 
 # Goal Post One [Completed: 2/22/24]

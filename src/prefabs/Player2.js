@@ -1,4 +1,4 @@
-class Player extends Phaser.Physics.Arcade.Sprite {
+class Player2 extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, frame, direction, pnum) {
         super(scene, x, y, texture, frame)
         scene.add.existing(this)
@@ -6,11 +6,17 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         //physics parameters
         this.body.setCollideWorldBounds(true)
+        this.onWorldBounds = true
         //this.setGravityY(1000)
         this.body.setAllowDrag(true)
         this.body.setDragX(500)
         this.body.setDragY(500)
         this.body.setMaxVelocityX(150)
+
+        //health data
+        this.hp = 3
+        this.hp_sprite = this.scene.add.sprite(game.config.width - 48, 0, 'health', 0).setOrigin(0)
+        this.hp_sprite.setScale(.7)
 
         //set properties
         this.direction = direction
@@ -21,13 +27,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.pnum = pnum
 
 
-        scene.playerFSM = new StateMachine('idle', {
-            idle: new IdleState(),
-            run: new RunState(),
-            jump: new JumpState(),
-            shoot: new ShootState(),
-            runshoot: new RunShootState(),
-            jumpshoot: new JumpShootState(),
+        scene.player2FSM = new StateMachine('idle', {
+            idle: new Idle2State(),
+            run: new Run2State(),
+            jump: new Jump2State(),
+            shoot: new Shoot2State(),
+            runshoot: new RunShoot2State(),
+            jumpshoot: new JumpShoot2State(),
             //dead: new DeadState()
         }, [scene, this])
 
@@ -37,31 +43,31 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 }
 
-class IdleState extends State {
+class Idle2State extends State {
     enter(scene, player) {
         console.log('idle state')
         player.setAcceleration(0)
-        player.anims.play(`p1_idle`, false)
+        player.anims.play(`p2_idle`, false)
     }
 
     execute(scene, player) {
-        //key binds for p1
+        //key binds for p2
         this.KEYS = scene.KEYS
 
         //a/e to run
-        if(this.KEYS.P1_LEFT.isDown || this.KEYS.P1_RIGHT.isDown) {    
+        if(this.KEYS.P2_LEFT.isDown || this.KEYS.P2_RIGHT.isDown) {    
             this.stateMachine.transition('run')
             return
         }
 
         //w to jump
-        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P1_JUMP)) {    
+        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P2_JUMP)) {    
             this.stateMachine.transition('jump')
             return
         }
 
         //e to shoot
-        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P1_SHOOT) && !player.shotCheck) {    
+        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P2_SHOOT) && !player.shotCheck) {    
             this.stateMachine.transition('shoot')
             return
         }
@@ -69,7 +75,7 @@ class IdleState extends State {
     }
 }
 
-class RunState extends State {
+class Run2State extends State {
     enter(scene, player) {
         console.log("run state")
     }
@@ -77,19 +83,19 @@ class RunState extends State {
     execute(scene, player) {
         this.KEYS = scene.KEYS
         //go idle if no key press
-        if((this.KEYS.P1_LEFT.isUp && this.KEYS.P1_RIGHT.isUp)) {    
+        if((this.KEYS.P2_LEFT.isUp && this.KEYS.P2_RIGHT.isUp)) {    
             this.stateMachine.transition('idle')
             return
         }
 
         //w to jump
-        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P1_JUMP)) {    
+        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P2_JUMP)) {    
             this.stateMachine.transition('jump')
             return
         }
 
         //e to shoot
-        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P1_SHOOT) && !player.shotCheck) {    
+        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P2_SHOOT) && !player.shotCheck) {    
             this.stateMachine.transition('runshoot')
             return
         }
@@ -97,12 +103,12 @@ class RunState extends State {
         //move player
         let playerVector = new Phaser.Math.Vector2(0, 0)
         //left and right
-        player.anims.play('p1_run', true)
-        if(this.KEYS.P1_LEFT.isDown) {
+        player.anims.play('p2_run', true)
+        if(this.KEYS.P2_LEFT.isDown) {
             playerVector.x = -1
             player.flipX = false
         }
-        else if(this.KEYS.P1_RIGHT.isDown) {
+        else if(this.KEYS.P2_RIGHT.isDown) {
             playerVector.x = 1
             player.flipX = true
         }
@@ -113,7 +119,7 @@ class RunState extends State {
     }
 }
 
-class JumpState extends State {
+class Jump2State extends State {
     enter(scene, player) {
         console.log("jump state")
         this.jumped1 = false
@@ -125,7 +131,7 @@ class JumpState extends State {
         //jump once
         if(this.jumped1 == false) {
             player.setVelocityY(player.jumpHeight * -1)
-            player.anims.play('p1_jump', true)
+            player.anims.play('p2_jump', true)
             this.jumped1 = true
         }
 
@@ -137,15 +143,15 @@ class JumpState extends State {
         // }
         
         //a/e to run
-        if(this.KEYS.P1_LEFT.isDown || this.KEYS.P1_RIGHT.isDown) {    
+        if(this.KEYS.P2_LEFT.isDown || this.KEYS.P2_RIGHT.isDown) {    
             //move player
             let playerVector = new Phaser.Math.Vector2(0, 0)
             //left and right
-            if(this.KEYS.P1_LEFT.isDown) {
+            if(this.KEYS.P2_LEFT.isDown) {
                 playerVector.x = -1
                 player.flipX = false
             }
-            else if(this.KEYS.P1_RIGHT.isDown) {
+            else if(this.KEYS.P2_RIGHT.isDown) {
                 playerVector.x = 1
                 player.flipX = true
             }
@@ -155,7 +161,7 @@ class JumpState extends State {
         }
 
         //e to shoot
-        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P1_SHOOT) && !player.shotCheck) {    
+        if(Phaser.Input.Keyboard.JustDown(this.KEYS.P2_SHOOT) && !player.shotCheck) {    
             this.stateMachine.transition('jumpshoot')
             return
         }
@@ -167,18 +173,19 @@ class JumpState extends State {
     }
 }
 
-class ShootState extends State {
+class Shoot2State extends State {
     enter(scene, player) {
         console.log("shoot state")
         player.shotCheck = true
-        player.anims.play("p1_shoot", true)
+        player.anims.play("p2_shoot", true)
         let direction = 'left'
-        console.log(player.flipX)
         if(player.flipX == true) {
             direction = 'right'
+            this.shot = new Bullet(scene, player.x + 14, player.y + 4, 'bullet', 0, direction)
         }
-        console.log(direction)
-        this.shot = new Bullet(scene, player.x, player.y, 'bullet', 0, direction)
+        else {
+            this.shot = new Bullet(scene, player.x - 14, player.y + 4, 'bullet', 0, direction)
+        }
         setTimeout(() => {
             player.shotCheck = false
         }, player.shotCooldown)
@@ -186,18 +193,19 @@ class ShootState extends State {
     }
 }
 
-class RunShootState extends State {
+class RunShoot2State extends State {
     enter(scene, player) {
         console.log("shoot state")
         player.shotCheck = true
-        player.anims.play("p1_shoot", true)
+        player.anims.play("p2_shoot", true)
         let direction = 'left'
-        console.log(player.flipX)
         if(player.flipX == true) {
             direction = 'right'
+            this.shot = new Bullet(scene, player.x + 14, player.y + 4, 'bullet', 0, direction)
         }
-        console.log(direction)
-        this.shot = new Bullet(scene, player.x, player.y, 'bullet', 0, direction)
+        else {
+            this.shot = new Bullet(scene, player.x - 14, player.y + 4, 'bullet', 0, direction)
+        }
         setTimeout(() => {
             player.shotCheck = false
         }, player.shotCooldown)
@@ -205,18 +213,19 @@ class RunShootState extends State {
     }
 }
 
-class JumpShootState extends State {
+class JumpShoot2State extends State {
     enter(scene, player) {
         console.log("shoot state")
         player.shotCheck = true
-        player.anims.play("p1_shoot", true)
+        player.anims.play("p2_shoot", true)
         let direction = 'left'
-        console.log(player.flipX)
         if(player.flipX == true) {
             direction = 'right'
+            this.shot = new Bullet(scene, player.x + 14, player.y + 4, 'bullet', 0, direction)
         }
-        console.log(direction)
-        this.shot = new Bullet(scene, player.x, player.y, 'bullet', 0, direction)
+        else {
+            this.shot = new Bullet(scene, player.x - 14, player.y + 4, 'bullet', 0, direction)
+        }
         setTimeout(() => {
             player.shotCheck = false
         }, player.shotCooldown)
