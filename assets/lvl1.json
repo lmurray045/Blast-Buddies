@@ -82,6 +82,30 @@
                  "width":0,
                  "x":250,
                  "y":205
+                }, 
+                {
+                 "height":0,
+                 "id":4,
+                 "name":"Robot_1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":71.141052631579,
+                 "y":202.913684210526
+                }, 
+                {
+                 "height":0,
+                 "id":5,
+                 "name":"Robot_2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":265.162105263158,
+                 "y":126.113684210526
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -90,7 +114,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":4,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",

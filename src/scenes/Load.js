@@ -28,6 +28,12 @@ class Load extends Phaser.Scene {
             startFrame: 0,
             endFrame: 3
         })
+        this.load.spritesheet('robot', 'robot.png', {
+            frameWidth: 16,
+            frameHeight: 23,
+            startFrame: 0,
+            endFrame: 4
+        })
         this.load.tilemapTiledJSON('tilemapJSON', 'lvl1.json')
     }
 
@@ -182,7 +188,17 @@ class Load extends Phaser.Scene {
             frameRate: 0
         })
 
-        
+        //enemy
+
+        this.anims.create({
+            key: 'robot_walk',
+            frames: this.anims.generateFrameNumbers('robot', {
+                frames: [0, 1, 2, 3, 4, 4, 3, 2, 1, 0]
+            }),
+            frameRate: 4,
+            repeat: -1
+        })
+
 
     }
 

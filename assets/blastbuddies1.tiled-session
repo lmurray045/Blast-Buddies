@@ -8,6 +8,28 @@
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
+        "lvl1.json": {
+            "scale": 1.2369791666666665,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 144.30315789473687,
+                "y": 120.05052631578947
+            }
+        },
+        "lvl1.json#floormap": {
+            "scaleInDock": 1
+        },
+        "lvl1.tmj": {
+            "scale": 1.2369791666666665,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 144.30315789473687,
+                "y": 120.05052631578947
+            }
+        },
+        "lvl1.tmj#floormap": {
+            "scaleInDock": 1
+        }
     },
     "last.exportedFilePath": "/Users/liam/Desktop/CMPM 120/Blast Buddies/assets",
     "last.imagePath": "/Users/liam/Desktop/CMPM 120/aseprite",
@@ -22,6 +44,7 @@
     "project": "blastbuddies1.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "lvl1.json"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
