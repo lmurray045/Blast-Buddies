@@ -34,7 +34,18 @@ class Load extends Phaser.Scene {
             startFrame: 0,
             endFrame: 4
         })
+        this.load.spritesheet('lava', 'lava.png', {
+            frameWidth: 32,
+            frameHeight: 32,
+            startFrame: 0,
+            endFrame: 3
+        })
         this.load.tilemapTiledJSON('tilemapJSON', 'lvl1.json')
+
+        //audio
+        this.load.audio('jump', 'jump.wav')
+        this.load.audio('hurt', 'hurt.wav')
+        this.load.audio('shoot', 'shoot.wav')
     }
 
     create() {
@@ -126,7 +137,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p2_shoot",
             repeat: 0,
-            framerate: 8,
+            frameRate: 8,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 start: 12,
                 end: 17
@@ -199,6 +210,16 @@ class Load extends Phaser.Scene {
             repeat: -1
         })
 
+        //lava
+
+        this.anims.create({
+            key: 'gurgle',
+            frames: this.anims.generateFrameNumbers('lava', {start: 0, end: 3}),
+            frameRate: 4,
+            repeat: -1
+        })
+
+        console.log(this.anims)
 
     }
 

@@ -79,6 +79,15 @@ class Play extends Phaser.Scene {
         this.robot2 = new Robot(this, r2spawn.x, r2spawn.y, "robot", 0, 'left', 0).setOrigin(0, 1)
         this.robot2.anims.play('robot_walk')
         this.enemyGroup.add(this.robot2)
+
+
+        //lava
+        this.lava = this.physics.add.sprite(192, game.config.height, 'lava', 0).setOrigin(0, 1)
+        this.lava.anims.play('gurgle', true)
+        this.lava.setImmovable(true)
+        this.lava.setSize(32, 16, false)
+        this.lava.setOffset(0, 15)
+        
         
         //physics and colliders----------------------------------
 
@@ -94,6 +103,17 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.bulletGroup, this.playerGroup, (bullet, player) => {
             bullet.destroy()
             player.hp -= 1
+            this.sound.play('hurt')
+            player.hp_sprite.anims.play(`health_${player.hp}`)
+            if(player.hp == 0) {
+                player.destroy()
+            }
+        })
+
+        //players and lava
+        this.physics.add.collider(this.lava, this.playerGroup, (lava, player) => {
+            player.hp = 0
+            this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
             if(player.hp == 0) {
                 player.destroy()
@@ -103,9 +123,11 @@ class Play extends Phaser.Scene {
         //players and robots
         this.physics.add.collider(this.enemyGroup, this.playerGroup, (robot, player) => {
             robot.destroy()
+            this.sound.play('hurt')
             player.hp -= 1
             player.hp_sprite.anims.play(`health_${player.hp}`)
             if(player.hp == 0) {
+                player.stateMachine.transition('dead')
                 player.destroy()
             }
         })
@@ -127,6 +149,8 @@ class Play extends Phaser.Scene {
     update() {
         this.player1FSM.step()
         this.player2FSM.step()
+        this.p1.update()
+        this.p2.update()
     }
 
 } 

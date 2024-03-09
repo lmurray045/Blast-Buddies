@@ -34,7 +34,7 @@ class Player1 extends Phaser.Physics.Arcade.Sprite {
             shoot: new ShootState(),
             runshoot: new RunShootState(),
             jumpshoot: new JumpShootState(),
-            //dead: new DeadState()
+            dead: new DeadState()
         }, [scene, this])
 
     }
@@ -46,6 +46,9 @@ class Player1 extends Phaser.Physics.Arcade.Sprite {
 class IdleState extends State {
     enter(scene, player) {
         console.log('idle state')
+        if(player.hp == 0) {
+            this.stateMachine.transition('dead')
+        }
         player.setAcceleration(0)
         player.anims.play(`p1_idle`, false)
     }
@@ -53,6 +56,10 @@ class IdleState extends State {
     execute(scene, player) {
         //key binds for p1
         this.KEYS = scene.KEYS
+
+        if(player.hp == 0) {
+            this.stateMachine.transition('dead')
+        }
 
         //a/e to run
         if(this.KEYS.P1_LEFT.isDown || this.KEYS.P1_RIGHT.isDown) {    
@@ -83,6 +90,9 @@ class RunState extends State {
     execute(scene, player) {
         this.KEYS = scene.KEYS
         //go idle if no key press
+        if(player.hp == 0) {
+            this.stateMachine.transition('dead')
+        }
         if((this.KEYS.P1_LEFT.isUp && this.KEYS.P1_RIGHT.isUp)) {    
             this.stateMachine.transition('idle')
             return
@@ -122,12 +132,16 @@ class RunState extends State {
 class JumpState extends State {
     enter(scene, player) {
         console.log("jump state")
+        scene.sound.play('jump')
         this.jumped1 = false
         this.jumped2 = false
     }
 
     execute(scene, player) {
         this.KEYS = scene.KEYS
+        if(player.hp == 0) {
+            this.stateMachine.transition('dead')
+        }
         //jump once
         if(this.jumped1 == false) {
             player.setVelocityY(player.jumpHeight * -1)
@@ -176,7 +190,11 @@ class JumpState extends State {
 class ShootState extends State {
     enter(scene, player) {
         console.log("shoot state")
+        scene.sound.play('shoot')
         //set cooldown
+        if(player.hp == 0) {
+            this.stateMachine.transition('dead')
+        }
         player.shotCheck = true
         //play animation
         player.anims.play("p1_shoot", true)
@@ -204,6 +222,12 @@ class ShootState extends State {
 class RunShootState extends State {
     enter(scene, player) {
         console.log("shoot state")
+        scene.sound.play('shoot')
+
+        if(player.hp == 0) {
+            this.stateMachine.transition('dead')
+        }
+
         player.shotCheck = true
         player.anims.play("p1_shoot", true)
         let direction = 'left'
@@ -223,6 +247,12 @@ class RunShootState extends State {
 
 class JumpShootState extends State {
     enter(scene, player) {
+        scene.sound.play('shoot')
+
+        if(player.hp == 0) {
+            this.stateMachine.transition('dead')
+        }
+
         console.log("shoot state")
         player.shotCheck = true
         player.anims.play("p1_shoot", true)
@@ -238,5 +268,11 @@ class JumpShootState extends State {
             player.shotCheck = false
         }, player.shotCooldown)
         this.stateMachine.transition('idle')
+    }
+}
+
+class DeadState extends State {
+    enter(scene, player) {
+        
     }
 }
