@@ -28,7 +28,7 @@ class Load extends Phaser.Scene {
             startFrame: 0,
             endFrame: 3
         })
-        this.load.spritesheet('robot', 'Robot.png', {
+        this.load.spritesheet('robot', 'robot.png', {
             frameWidth: 16,
             frameHeight: 23,
             startFrame: 0,
