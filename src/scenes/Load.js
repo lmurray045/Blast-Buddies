@@ -56,7 +56,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p1_run",
             repeat: -1,
-            framerate: 1,
+            frameRate: 10,
             frames: this.anims.generateFrameNumbers('p1sheet', {
                 start: 1,
                 end: 6
@@ -66,7 +66,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p1_jump",
             repeat: 0,
-            framerate: 8,
+            frameRate: 8,
             frames: this.anims.generateFrameNumbers('p1sheet', {
                 start: 7,
                 end: 10
@@ -76,7 +76,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p1_shoot",
             repeat: 0,
-            framerate: 8,
+            frameRate: 8,
             frames: this.anims.generateFrameNumbers('p1sheet', {
                 start: 12,
                 end: 17
@@ -86,7 +86,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p1_jumpshoot",
             repeat: 0,
-            framerate: 8,
+            frameRate: 8,
             frames: this.anims.generateFrameNumbers('p1sheet', {
                 start: 18,
                 end: 19
@@ -96,7 +96,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p1_runshoot",
             repeat: 0,
-            framerate: 8,
+            frameRate: 8,
             frames: this.anims.generateFrameNumbers('p1sheet', {
                 start: 19,
                 end: 23
@@ -106,7 +106,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p1_idle",
             repeat: 0,
-            framerate: 2,
+            frameRate: 4,
             frames: this.anims.generateFrameNumbers('p1sheet', {
                 frames: [0, 11]
             })
@@ -118,7 +118,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p2_run",
             repeat: -1,
-            framerate: 1,
+            frameRate: 10,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 start: 1,
                 end: 6
@@ -128,7 +128,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p2_jump",
             repeat: 0,
-            framerate: 8,
+            frameRate: 8,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 start: 7,
                 end: 10
@@ -148,7 +148,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p2_jumpshoot",
             repeat: 0,
-            framerate: 8,
+            frameRate: 8,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 start: 18,
                 end: 19
@@ -158,7 +158,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p2_runshoot",
             repeat: 0,
-            framerate: 8,
+            frameRate: 8,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 start: 19,
                 end: 23
@@ -168,7 +168,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p2_idle",
             repeat: 0,
-            framerate: 2,
+            frameRate: 2,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 frames: [0, 11]
             })
@@ -177,7 +177,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p2_example",
             repeat: -1,
-            frameRate: 2,
+            frameRate: 4,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 start: 0,
                 end: 23

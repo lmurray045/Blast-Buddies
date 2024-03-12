@@ -38,12 +38,12 @@ class Play extends Phaser.Scene {
 
         //players
         this.p1 = new Player1(this, p1spawn.x, p1spawn.y, 'p1sheet', 0, 'right', 1)
-        this.p1.setGravityY(2000)
+        this.p1.setGravityY(1700)
         this.p1.body.setAllowDrag(true)
-        this.p1.body.setDragX(1000)
+        this.p1.body.setDragX(1500)
 
         this.p2 = new Player2(this, p2spawn.x, p2spawn.y, 'p2sheet', 0, 'right', 1)
-        this.p2.setGravityY(2000)
+        this.p2.setGravityY(1700)
         this.p2.body.setAllowDrag(true)
         this.p2.body.setDragX(1000)
 

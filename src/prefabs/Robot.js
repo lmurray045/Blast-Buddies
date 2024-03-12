@@ -10,6 +10,7 @@ class Robot extends Phaser.Physics.Arcade.Sprite {
         this.moveSpeed = 500
         this.direction = direction
         this.distance = distance //space it can travel in pixels
+        this.moved = 0
     }
     
     
@@ -22,6 +23,6 @@ class Robot extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
-
+        
     }
 }

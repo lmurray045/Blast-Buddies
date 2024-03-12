@@ -17,7 +17,7 @@ class Player1 extends Phaser.Physics.Arcade.Sprite {
         this.direction = direction
         this.moveSpeed = 500
         this.jumpHeight = 500
-        this.shotCooldown = 100
+        this.shotCooldown = 700
         this.shotCheck = false
         this.pnum = pnum
 
