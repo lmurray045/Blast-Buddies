@@ -8,7 +8,6 @@ class Play extends Phaser.Scene {
         this.bulletGroup = this.add.group({
             runChildUpdate: true
         })
-
     }
 
     create() {
@@ -105,9 +104,6 @@ class Play extends Phaser.Scene {
             player.hp -= 1
             this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
-            if(player.hp == 0) {
-                player.destroy()
-            }
         })
 
         //players and lava
@@ -115,9 +111,6 @@ class Play extends Phaser.Scene {
             player.hp = 0
             this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
-            if(player.hp == 0) {
-                player.destroy()
-            }
         })
 
         //players and robots
@@ -126,10 +119,6 @@ class Play extends Phaser.Scene {
             this.sound.play('hurt')
             player.hp -= 1
             player.hp_sprite.anims.play(`health_${player.hp}`)
-            if(player.hp == 0) {
-                player.stateMachine.transition('dead')
-                player.destroy()
-            }
         })
 
         //robots and bullets

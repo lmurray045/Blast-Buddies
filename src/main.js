@@ -22,7 +22,7 @@ let config = {
     zoom: 2,
     width: 288,
     height: 240,
-    scene: [Keys, Menu, Play, GameOver, Load]
+    scene: [Keys, Menu, Controls, Play, GameOver, Load]
 }
 
 let game = new Phaser.Game(config)

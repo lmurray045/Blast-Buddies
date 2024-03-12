@@ -46,11 +46,11 @@ class Player1 extends Phaser.Physics.Arcade.Sprite {
 class IdleState extends State {
     enter(scene, player) {
         console.log('idle state')
+        player.setAcceleration(0)
+        player.anims.play(`p1_idle`, false)
         if(player.hp == 0) {
             this.stateMachine.transition('dead')
         }
-        player.setAcceleration(0)
-        player.anims.play(`p1_idle`, false)
     }
 
     execute(scene, player) {
@@ -91,7 +91,7 @@ class RunState extends State {
         this.KEYS = scene.KEYS
         //go idle if no key press
         if(player.hp == 0) {
-            this.stateMachine.transition('dead')
+            this.stateMachine.transition('idle')
         }
         if((this.KEYS.P1_LEFT.isUp && this.KEYS.P1_RIGHT.isUp)) {    
             this.stateMachine.transition('idle')
@@ -140,7 +140,7 @@ class JumpState extends State {
     execute(scene, player) {
         this.KEYS = scene.KEYS
         if(player.hp == 0) {
-            this.stateMachine.transition('dead')
+            this.stateMachine.transition('idle')
         }
         //jump once
         if(this.jumped1 == false) {
@@ -193,7 +193,7 @@ class ShootState extends State {
         scene.sound.play('shoot')
         //set cooldown
         if(player.hp == 0) {
-            this.stateMachine.transition('dead')
+            this.stateMachine.transition('idle')
         }
         player.shotCheck = true
         //play animation
@@ -225,7 +225,7 @@ class RunShootState extends State {
         scene.sound.play('shoot')
 
         if(player.hp == 0) {
-            this.stateMachine.transition('dead')
+            this.stateMachine.transition('idle')
         }
 
         player.shotCheck = true
@@ -250,7 +250,7 @@ class JumpShootState extends State {
         scene.sound.play('shoot')
 
         if(player.hp == 0) {
-            this.stateMachine.transition('dead')
+            this.stateMachine.transition('idle')
         }
 
         console.log("shoot state")
@@ -273,6 +273,9 @@ class JumpShootState extends State {
 
 class DeadState extends State {
     enter(scene, player) {
-        
+        console.log("deadstate")
+        player.anims.stop()
+        player.setVelocity(0)
+        player.destroy()
     }
 }

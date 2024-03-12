@@ -112,6 +112,7 @@ class Load extends Phaser.Scene {
             })
         })
 
+
         //p2 animations--------------------------------------------
         
         this.anims.create({
@@ -170,6 +171,16 @@ class Load extends Phaser.Scene {
             framerate: 2,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 frames: [0, 11]
+            })
+        })
+
+        this.anims.create({
+            key: "p2_example",
+            repeat: -1,
+            frameRate: 2,
+            frames: this.anims.generateFrameNumbers('p2sheet', {
+                start: 0,
+                end: 23
             })
         })
 

@@ -14,7 +14,12 @@ class Keys extends Phaser.Scene {
             P2_JUMP: KeyCodes.UP,
             P2_LEFT: KeyCodes.LEFT,
             P2_RIGHT: KeyCodes.RIGHT,
-            P2_SHOOT: KeyCodes.SHIFT
+            P2_SHOOT: KeyCodes.SHIFT,
+
+            MENU_C: KeyCodes.C,
+            MENU_P: KeyCodes.P,
+            MENU_R: KeyCodes.R,
+            SPACE: KeyCodes.SPACE
         })
     }
 
