@@ -22,6 +22,10 @@ let config = {
     zoom: 2,
     width: 288,
     height: 240,
+    scales: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     scene: [Keys, Menu, Controls, Play, GameOver, Load]
 }
 

@@ -66,7 +66,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p1_jump",
             repeat: 0,
-            frameRate: 8,
+            frameRate: 12,
             frames: this.anims.generateFrameNumbers('p1sheet', {
                 start: 7,
                 end: 10
@@ -128,7 +128,7 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "p2_jump",
             repeat: 0,
-            frameRate: 8,
+            frameRate: 12,
             frames: this.anims.generateFrameNumbers('p2sheet', {
                 start: 7,
                 end: 10

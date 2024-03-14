@@ -266,6 +266,6 @@ class JumpShoot2State extends State {
 class Dead2State extends State {
     enter(scene, player) {
         console.log("deadstate")
-        player.destroy()
+        player.setAlpha(0)
     }
 }

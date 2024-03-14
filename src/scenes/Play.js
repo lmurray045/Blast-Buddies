@@ -138,8 +138,25 @@ class Play extends Phaser.Scene {
     update() {
         this.player1FSM.step()
         this.player2FSM.step()
-        this.p1.update()
-        this.p2.update()
+        if(this.p1.hp == 0 || this.p2.hp == 0) {
+            setTimeout(() => {
+                //CITATION: This screen shot code is ripped directly from nathans paddle parkour
+                //let textureManager = this.textures;
+                // take snapshot of the entire game viewport
+                // https://newdocs.phaser.io/docs/3.55.2/Phaser.Renderer.WebGL.WebGLRenderer#snapshot
+                // .snapshot(callback, type, encoderOptions)
+                // the image is automatically passed to the callback
+                game.renderer.snapshot((snapshotImage) => {
+                // make sure an existing texture w/ that key doesn't already exist
+                    if(this.textures.exists('titlesnapshot')) {
+                        this.textures.remove('titlesnapshot')
+                    }
+                    // take the snapshot img returned from callback and add to texture manager
+                    this.textures.addImage('titlesnapshot', snapshotImage)
+                    this.scene.start('gameOverScene')
+                })
+            },500)
+        }
     }
 
 } 

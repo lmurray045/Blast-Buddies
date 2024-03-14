@@ -276,6 +276,6 @@ class DeadState extends State {
         console.log("deadstate")
         player.anims.stop()
         player.setVelocity(0)
-        player.destroy()
+        player.setAlpha(0)
     }
 }

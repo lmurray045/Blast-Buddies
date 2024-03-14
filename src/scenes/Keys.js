@@ -19,6 +19,7 @@ class Keys extends Phaser.Scene {
             MENU_C: KeyCodes.C,
             MENU_P: KeyCodes.P,
             MENU_R: KeyCodes.R,
+            MENU_M: KeyCodes.M,
             SPACE: KeyCodes.SPACE
         })
     }
