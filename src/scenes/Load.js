@@ -41,6 +41,8 @@ class Load extends Phaser.Scene {
             endFrame: 3
         })
         this.load.tilemapTiledJSON('tilemapJSON', 'lvl1.json')
+        this.load.tilemapTiledJSON('tilemapJSON2', 'lvl2.json')
+        this.load.tilemapTiledJSON('tilemapJSON3', 'lvl3.json')
 
         //audio
         this.load.audio('jump', 'jump.wav')

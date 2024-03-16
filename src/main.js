@@ -15,7 +15,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            //debug: true,
+            debug: true,
             //gravity: { y: 1000 }
         }
     },
@@ -26,7 +26,7 @@ let config = {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    scene: [Keys, Menu, Controls, Play, GameOver, Load]
+    scene: [Keys, Menu, Controls, Credits, Play, Play2, Play3, GameOver, Load]
 }
 
 let game = new Phaser.Game(config)
@@ -34,6 +34,6 @@ let game = new Phaser.Game(config)
 let cursors
 
 
-//set UI sizes
-let borderUISize = game.config.height / 15
-let borderPadding = borderUISize / 3
+//set global sizes
+let globalWidth = 288
+let globalHeight = 240

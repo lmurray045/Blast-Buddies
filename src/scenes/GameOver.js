@@ -9,15 +9,15 @@ class GameOver extends Phaser.Scene {
         //CITATION: This is also taken from Paddle Parkour
         // add snapshot image from prior Scene
         if (this.textures.exists('titlesnapshot')) {
-            this.add.image(this.game.config.width/2, this.game.config.height/2, 'titlesnapshot').setOrigin(0.5);
+            this.add.image(globalWidth/2, globalHeight/2, 'titlesnapshot').setOrigin(0.5);
         } else {
             console.log('texture error');
         }
 
         //game over text
-        this.add.bitmapText(game.config.width / 2, (game.config.height / 2) - 32, 'dogica_font', 'GAME OVER', 20).setOrigin(0.5)
-        this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'R to RESTART', 10).setOrigin(0.5)
-        this.add.bitmapText(game.config.width / 2, (game.config.height / 2) + 32, 'dogica_font', 'M for MENU', 10).setOrigin(0.5)
+        this.add.bitmapText(globalWidth / 2, (globalHeight / 2) - 32, 'dogica_font', 'GAME OVER', 20).setOrigin(0.5)
+        this.add.bitmapText(globalWidth / 2, (globalHeight / 2), 'dogica_font', 'R to RESTART', 10).setOrigin(0.5)
+        this.add.bitmapText(globalWidth / 2, (globalHeight / 2) + 32, 'dogica_font', 'M for MENU', 10).setOrigin(0.5)
     }
 
     update() {

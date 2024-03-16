@@ -7,10 +7,10 @@ class Robot extends Phaser.Physics.Arcade.Sprite {
         this.setImmovable(true)
 
         //properties
-        this.moveSpeed = 500
+        this.moveSpeed = 1
         this.direction = direction
         this.distance = distance //space it can travel in pixels
-        this.moved = 0
+        this.moved = distance / 2
     }
     
     
@@ -23,6 +23,21 @@ class Robot extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
-        
+        if(this.moved < this.distance && this.direction == 'right'){
+            this.x += this.moveSpeed
+            this.moved += this.moveSpeed
+        }
+        if(this.moved < this.distance && this.direction == 'left'){
+            this.x -= this.moveSpeed
+            this.moved += this.moveSpeed
+        }
+        if(this.moved == this.distance){
+            this.moved = 0
+            if(this.direction == 'left') {
+                this.direction = 'right'
+            } else{
+                this.direction = 'left'
+            }
+        }
     }
 }

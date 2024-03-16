@@ -15,7 +15,7 @@ class Player2 extends Phaser.Physics.Arcade.Sprite {
 
         //health data
         this.hp = 3
-        this.hp_sprite = this.scene.add.sprite(game.config.width - 48, 0, 'health', 0).setOrigin(0)
+        this.hp_sprite = this.scene.add.sprite(globalWidth - 48, 0, 'health', 0).setOrigin(0)
         this.hp_sprite.setScale(.7)
 
         //set properties

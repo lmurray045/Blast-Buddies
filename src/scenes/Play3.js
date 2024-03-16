@@ -1,6 +1,6 @@
-class Play extends Phaser.Scene {
+class Play3 extends Phaser.Scene {
     constructor() {
-        super('playScene')
+        super('play3Scene')
     }
 
     init() {
@@ -11,19 +11,12 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        console.log("Play Scene")
-
+        console.log("Play3 Scene")
+        
         this.ended = false
 
-        //resize windows
-        game.scale.resize(288, 240)
-        
-        //resize reference variables
-        globalHeight = 240
-        globalWidth = 288
-        
         //tilemap creation
-        const map = this.add.tilemap('tilemapJSON')
+        const map = this.add.tilemap('tilemapJSON3')
         const tileset = map.addTilesetImage("floormap", "tilesetImage")
         const bgLayer = map.createLayer("background", tileset)
         const terrainLayer = map.createLayer("terrain", tileset)
@@ -34,6 +27,13 @@ class Play extends Phaser.Scene {
         //camera bounds
         this.cameras.main.setViewport(0, 0, map.widthInPixels, map.heightInPixels)
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+
+        //resize windows
+        game.scale.resize(map.widthInPixels, map.heightInPixels)
+        
+        //resize reference variables
+        globalHeight = map.heightInPixels
+        globalWidth = map.widthInPixels
 
         //add p1
         const p1spawn = map.findObject('objects', (obj) => obj.name === 'Player One')
@@ -50,12 +50,13 @@ class Play extends Phaser.Scene {
         this.p1.setGravityY(1700)
         this.p1.body.setAllowDrag(true)
         this.p1.body.setDragX(1500)
-        this.p1.setSize(8, 28)
 
         this.p2 = new Player2(this, p2spawn.x, p2spawn.y, 'p2sheet', 0, 'right', 1)
         this.p2.setGravityY(1700)
         this.p2.body.setAllowDrag(true)
         this.p2.body.setDragX(1000)
+
+        this.p1.setSize(8, 28)
         this.p2.setSize(8, 28)
 
         //player group
@@ -72,32 +73,73 @@ class Play extends Phaser.Scene {
             runChildUpdate: true
         })
 
-
         // x and y coords
         const r1spawn = map.findObject('objects', (obj) => obj.name === 'Robot_1')
 
         const r2spawn = map.findObject('objects', (obj) => obj.name === 'Robot_2')
 
+        const r3spawn = map.findObject('objects', (obj) => obj.name === 'Robot_3')
+
+        const r4spawn = map.findObject('objects', (obj) => obj.name === 'Robot_4')
+
+        const r5spawn = map.findObject('objects', (obj) => obj.name === 'Robot_5')
+
+        const r6spawn = map.findObject('objects', (obj) => obj.name === 'Robot_6')
+
+        const r7spawn = map.findObject('objects', (obj) => obj.name === 'Robot_7')
+
+        const r8spawn = map.findObject('objects', (obj) => obj.name === 'Robot_8')
+
 
         //robot one
 
-        this.robot1 = new Robot(this, r1spawn.x, r1spawn.y, "robot", 0, 'left', 100).setOrigin(0, .8)
+        this.robot1 = new Robot(this, r1spawn.x, r1spawn.y, "robot", 0, 'left', 0).setOrigin(0.5, 1)
         this.robot1.anims.play('robot_walk')
         this.enemyGroup.add(this.robot1)
 
         //robot two
 
-        this.robot2 = new Robot(this, r2spawn.x, r2spawn.y, "robot", 0, 'left', 32).setOrigin(0, .9)
+        this.robot2 = new Robot(this, r2spawn.x, r2spawn.y, "robot", 0, 'left', 120).setOrigin(0.5, .9)
         this.robot2.anims.play('robot_walk')
         this.enemyGroup.add(this.robot2)
 
+        //robot three
 
-        //lava
-        this.lava = this.physics.add.sprite(192, game.config.height, 'lava', 0).setOrigin(0, 1)
-        this.lava.anims.play('gurgle', true)
-        this.lava.setImmovable(true)
-        this.lava.setSize(32, 16, false)
-        this.lava.setOffset(0, 15)
+        this.robot3 = new Robot(this, r3spawn.x, r3spawn.y, "robot", 0, 'left', 120).setOrigin(0.5, .9)
+        this.robot1.anims.play('robot_walk')
+        this.enemyGroup.add(this.robot3)
+
+        //robot four
+
+        this.robot4 = new Robot(this, r4spawn.x, r4spawn.y, "robot", 0, 'left', 0).setOrigin(0.5, .9)
+        this.robot4.anims.play('robot_walk')
+        this.enemyGroup.add(this.robot4)
+
+        //robot five
+
+        this.robot5 = new Robot(this, r5spawn.x, r5spawn.y, "robot", 0, 'left', 60).setOrigin(0.5, 1)
+        this.robot5.anims.play('robot_walk')
+        this.enemyGroup.add(this.robot5)
+
+        //robot six
+
+        this.robot6 = new Robot(this, r6spawn.x, r6spawn.y, "robot", 0, 'left', 120).setOrigin(0.5, .9)
+        this.robot6.anims.play('robot_walk')
+        this.enemyGroup.add(this.robot6)
+
+        //robot seven
+
+        this.robot7 = new Robot(this, r7spawn.x, r7spawn.y, "robot", 0, 'left', 120).setOrigin(0.5, 1)
+        this.robot7.anims.play('robot_walk')
+        this.enemyGroup.add(this.robot7)
+
+        //robot eight
+
+        this.robot8 = new Robot(this, r8spawn.x, r8spawn.y, "robot", 0, 'left', 60).setOrigin(0.5, .9)
+        this.robot8.anims.play('robot_walk')
+        this.enemyGroup.add(this.robot8)
+
+
         
         
         //physics and colliders----------------------------------
@@ -114,13 +156,6 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.bulletGroup, this.playerGroup, (bullet, player) => {
             bullet.destroy()
             player.hp -= 1
-            this.sound.play('hurt')
-            player.hp_sprite.anims.play(`health_${player.hp}`)
-        })
-
-        //players and lava
-        this.physics.add.collider(this.lava, this.playerGroup, (lava, player) => {
-            player.hp = 0
             this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
         })
@@ -152,18 +187,30 @@ class Play extends Phaser.Scene {
         this.player2FSM.step()
         this.robot1.update()
         this.robot2.update()
+        this.robot3.update()
+        this.robot4.update()
+        this.robot5.update()
+        this.robot6.update()
+        this.robot7.update()
+        this.robot8.update()
         if((this.p1.hp == 0 || this.p2.hp == 0) && this.ended == false) {
-            //game over text
-            this.add.bitmapText(game.config.width / 2, (game.config.height / 2) - 32, 'dogica_font', 'ROUND OVER', 20).setOrigin(0.5)
-            if(this.p1.hp == 0) {
-                this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'Player 2 WINS', 10).setOrigin(0.5)
-            }
-            else{
-                this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'Player 1 WINS', 10).setOrigin(0.5)
-            }
             setTimeout(() => {
-                this.scene.start("play2Scene")
-            }, 5000)
+                //CITATION: This screen shot code is ripped directly from nathans paddle parkour
+                //let textureManager = this.textures;
+                // take snapshot of the entire game viewport
+                // https://newdocs.phaser.io/docs/3.55.2/Phaser.Renderer.WebGL.WebGLRenderer#snapshot
+                // .snapshot(callback, type, encoderOptions)
+                // the image is automatically passed to the callback
+                game.renderer.snapshot((snapshotImage) => {
+                // make sure an existing texture w/ that key doesn't already exist
+                    if(this.textures.exists('titlesnapshot')) {
+                        this.textures.remove('titlesnapshot')
+                    }
+                    // take the snapshot img returned from callback and add to texture manager
+                    this.textures.addImage('titlesnapshot', snapshotImage)
+                    this.scene.start('gameOverScene')
+                })
+            },500)
 
             this.ended = true
         }

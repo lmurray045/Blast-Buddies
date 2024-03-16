@@ -11,6 +11,13 @@ class Menu extends Phaser.Scene {
     create() {
         console.log("menu scene")
 
+        //resize windows
+        game.scale.resize(288, 240)
+        
+        //resize reference variables
+        globalHeight = 240
+        globalWidth = 288
+
         //steal inputs from Keys Scene
         this.KEYS = this.scene.get('keyScene').KEYS
 
@@ -18,6 +25,7 @@ class Menu extends Phaser.Scene {
         this.add.bitmapText(game.config.width / 2, (game.config.height / 2) - 32, 'dogica_font', 'BLAST BUDDIES', 20).setOrigin(0.5)
         this.add.bitmapText(game.config.width / 2, game.config.height / 2, 'dogica_font', 'Press SPACE to start', 15).setOrigin(0.5)
         this.add.bitmapText(game.config.width / 2, (game.config.height / 2) + 40, 'dogica_font', 'Press P for Player Controls', 7).setOrigin(0.5)
+        this.add.bitmapText(game.config.width / 2, (game.config.height / 2) + 60, 'dogica_font', 'Press C for Credits', 7).setOrigin(0.5)
 
     }
 
@@ -26,7 +34,7 @@ class Menu extends Phaser.Scene {
             this.scene.start('loadScene')
         }
         if(Phaser.Input.Keyboard.JustDown(this.KEYS.MENU_C)){
-            this.scene.start('loadScene')
+            this.scene.start('creditScene')
         }
         if(Phaser.Input.Keyboard.JustDown(this.KEYS.MENU_P)){
             this.scene.start('controlScene')

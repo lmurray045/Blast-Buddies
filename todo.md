@@ -1,17 +1,32 @@
 ### To Do List for Blast Buddies
 
+# Goal Post Three
+[] add moving platform
+[] add score system
+[x] add two levels
+    [x] level 2
+    [x] level 3
+[] add background music
+[] add menu tweens
+[x] add credits
+[] update the player controls scene
+[] add sources in code
+[x] scrolling enemies
+[] add tint on player damage
+
+
 # Goal Post Two
 [X] Make Tileset 
 [X] Make tile map in tiled
 [X] get level one on screen
-[] make various assets
+[x] make various assets
     [X] player
-    [] enemy
+    [X] enemy
     [X] platform
-    [] lava
+    [X] lava
     [x] bullet
 [x] Add player input
-[] Make prototype Menu
+[x] Make prototype Menu
 
 # Goal Post One [Completed: 2/22/24]
 [X] Make file system
@@ -20,4 +35,7 @@
 
 # Debug
  [] idle animation plays over others
- [] framerate for anims VERY high
+ [x] framerate for anims VERY high
+ [x] fix hitboxes
+ [x] fix hearts
+ [x] fix game over scene
