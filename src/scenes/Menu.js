@@ -13,6 +13,10 @@ class Menu extends Phaser.Scene {
 
         //resize windows
         game.scale.resize(288, 240)
+
+        //reset score
+        p1_score = 0
+        p2_score = 0
         
         //resize reference variables
         globalHeight = 240
@@ -31,7 +35,12 @@ class Menu extends Phaser.Scene {
 
     update() {
         if(Phaser.Input.Keyboard.JustDown(this.KEYS.SPACE)){
-            this.scene.start('loadScene')
+            if(loaded == false) {
+                this.scene.start('loadScene')
+                loaded = true
+            } else {
+                this.scene.start('playScene')
+            }
         }
         if(Phaser.Input.Keyboard.JustDown(this.KEYS.MENU_C)){
             this.scene.start('creditScene')

@@ -21,7 +21,8 @@ class Play extends Phaser.Scene {
         //resize reference variables
         globalHeight = 240
         globalWidth = 288
-        
+
+            
         //tilemap creation
         const map = this.add.tilemap('tilemapJSON')
         const tileset = map.addTilesetImage("floormap", "tilesetImage")
@@ -44,6 +45,8 @@ class Play extends Phaser.Scene {
         //p1 keys
         this.KEYS = this.scene.get('keyScene').KEYS
     
+        //game score counter
+        this.add.bitmapText(globalWidth / 2, 10, 'dogica_reg_font', `Player One: ${p1_score} | Player Two: ${p2_score}`, 8).setOrigin(0.5)
 
         //players
         this.p1 = new Player1(this, p1spawn.x, p1spawn.y, 'p1sheet', 0, 'right', 1)
@@ -116,6 +119,10 @@ class Play extends Phaser.Scene {
             player.hp -= 1
             this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
+            player.setTint('O#FF0000')
+            // setTimeout(() => {
+            //     player.setTint('#00000')
+            // }, 1000)
         })
 
         //players and lava
@@ -123,6 +130,10 @@ class Play extends Phaser.Scene {
             player.hp = 0
             this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
+            player.setTint('#FF0000')
+            setTimeout(() => {
+                player.setTint('#00000')
+            }, 1000)
         })
 
         //players and robots
@@ -131,6 +142,10 @@ class Play extends Phaser.Scene {
             this.sound.play('hurt')
             player.hp -= 1
             player.hp_sprite.anims.play(`health_${player.hp}`)
+            player.setTint('#FF0000')
+            setTimeout(() => {
+                player.setTint('#00000')
+            }, 1000)
         })
 
         //robots and bullets
@@ -156,9 +171,11 @@ class Play extends Phaser.Scene {
             //game over text
             this.add.bitmapText(game.config.width / 2, (game.config.height / 2) - 32, 'dogica_font', 'ROUND OVER', 20).setOrigin(0.5)
             if(this.p1.hp == 0) {
+                p2_score += 1
                 this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'Player 2 WINS', 10).setOrigin(0.5)
             }
             else{
+                p1_score += 1
                 this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'Player 1 WINS', 10).setOrigin(0.5)
             }
             setTimeout(() => {

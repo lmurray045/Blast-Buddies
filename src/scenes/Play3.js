@@ -15,6 +15,7 @@ class Play3 extends Phaser.Scene {
         
         this.ended = false
 
+
         //tilemap creation
         const map = this.add.tilemap('tilemapJSON3')
         const tileset = map.addTilesetImage("floormap", "tilesetImage")
@@ -34,6 +35,9 @@ class Play3 extends Phaser.Scene {
         //resize reference variables
         globalHeight = map.heightInPixels
         globalWidth = map.widthInPixels
+
+        //game score counter
+        this.add.bitmapText(globalWidth / 2, 10, 'dogica_reg_font', `Player One: ${p1_score} | Player Two: ${p2_score}`, 8).setOrigin(0.5)
 
         //add p1
         const p1spawn = map.findObject('objects', (obj) => obj.name === 'Player One')
@@ -194,6 +198,11 @@ class Play3 extends Phaser.Scene {
         this.robot7.update()
         this.robot8.update()
         if((this.p1.hp == 0 || this.p2.hp == 0) && this.ended == false) {
+            if(this.p1.hp == 0) {
+                p2_score += 1
+            } else {
+                p1_score += 1
+            }
             setTimeout(() => {
                 //CITATION: This screen shot code is ripped directly from nathans paddle parkour
                 //let textureManager = this.textures;

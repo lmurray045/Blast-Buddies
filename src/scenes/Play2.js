@@ -15,6 +15,7 @@ class Play2 extends Phaser.Scene {
         
         this.ended = false
 
+        
         //tilemap creation
         const map = this.add.tilemap('tilemapJSON2')
         const tileset = map.addTilesetImage("floormap", "tilesetImage")
@@ -30,10 +31,15 @@ class Play2 extends Phaser.Scene {
 
         //resize windows
         game.scale.resize(map.widthInPixels, map.heightInPixels)
+
+    
         
         //resize reference variables
         globalHeight = map.heightInPixels
         globalWidth = map.widthInPixels
+
+        //game score counter
+        this.add.bitmapText(globalWidth / 2, 10, 'dogica_reg_font', `Player One: ${p1_score} | Player Two: ${p2_score}`, 8).setOrigin(0.5)
 
         //add p1
         const p1spawn = map.findObject('objects', (obj) => obj.name === 'Player One')
@@ -196,9 +202,11 @@ class Play2 extends Phaser.Scene {
             //game over text
             this.add.bitmapText(globalWidth / 2, (globalHeight / 2) - 32, 'dogica_font', 'ROUND OVER', 20).setOrigin(0.5)
             if(this.p1.hp == 0) {
+                p2_score += 1
                 this.add.bitmapText(globalWidth / 2, (globalHeight / 2), 'dogica_font', 'Player 2 WINS', 10).setOrigin(0.5)
             }
             else{
+                p1_score += 1
                 this.add.bitmapText(globalWidth / 2, (globalHeight / 2), 'dogica_font', 'Player 1 WINS', 10).setOrigin(0.5)
             }
             setTimeout(() => {

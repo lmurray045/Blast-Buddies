@@ -8,6 +8,7 @@
 
 
 let config = {
+    parent: 'gameView',
     type: Phaser.AUTO,
     render: {
         pixelArt: true
@@ -32,6 +33,13 @@ let config = {
 let game = new Phaser.Game(config)
 
 let cursors
+
+//load flag
+let loaded = false
+
+//game scoring
+let p1_score = 0
+let p2_score = 0
 
 
 //set global sizes

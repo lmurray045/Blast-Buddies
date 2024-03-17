@@ -2,7 +2,7 @@
 
 # Goal Post Three
 [] add moving platform
-[] add score system
+[x] add score system
 [x] add two levels
     [x] level 2
     [x] level 3
@@ -13,6 +13,7 @@
 [] add sources in code
 [x] scrolling enemies
 [] add tint on player damage
+[] format game window properly
 
 
 # Goal Post Two
