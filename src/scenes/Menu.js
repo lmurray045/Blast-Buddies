@@ -12,7 +12,7 @@ class Menu extends Phaser.Scene {
         console.log("menu scene")
 
         //resize windows
-        game.scale.resize(288, 240)
+        game.scale.resize(336, 240)
 
         //reset score
         p1_score = 0
@@ -20,7 +20,7 @@ class Menu extends Phaser.Scene {
         
         //resize reference variables
         globalHeight = 240
-        globalWidth = 288
+        globalWidth = 336
 
         //steal inputs from Keys Scene
         this.KEYS = this.scene.get('keyScene').KEYS

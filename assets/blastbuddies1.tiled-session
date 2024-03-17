@@ -3,8 +3,9 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "lvl1.json",
     "expandedProjectPaths": [
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -16,10 +17,10 @@
         },
         "lvl1.json": {
             "scale": 1.2369791666666665,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 144.30315789473687,
-                "y": 120.05052631578947
+                "x": 144.30315789473684,
+                "y": 120.45473684210532
             }
         },
         "lvl1.json#floormap": {
@@ -40,7 +41,7 @@
             "scale": 1.66,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 214.45783132530119,
+                "x": 214.1566265060241,
                 "y": 164.4578313253012
             }
         },
@@ -57,12 +58,13 @@
     "map.tileWidth": 16,
     "map.width": 18,
     "openFiles": [
+        "lvl1.json"
     ],
     "project": "blastbuddies1.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "lvl2.json",
-        "lvl1.json"
+        "lvl1.json",
+        "lvl2.json"
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {

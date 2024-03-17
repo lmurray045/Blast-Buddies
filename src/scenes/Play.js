@@ -16,11 +16,11 @@ class Play extends Phaser.Scene {
         this.ended = false
 
         //resize windows
-        game.scale.resize(288, 240)
+        game.scale.resize(336, 240)
         
         //resize reference variables
         globalHeight = 240
-        globalWidth = 288
+        globalWidth = 336
 
             
         //tilemap creation
@@ -96,7 +96,7 @@ class Play extends Phaser.Scene {
 
 
         //lava
-        this.lava = this.physics.add.sprite(192, game.config.height, 'lava', 0).setOrigin(0, 1)
+        this.lava = this.physics.add.sprite(208, game.config.height, 'lava', 0).setOrigin(0, 1)
         this.lava.anims.play('gurgle', true)
         this.lava.setImmovable(true)
         this.lava.setSize(32, 16, false)
@@ -111,7 +111,7 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.p2, terrainLayer)
 
         //bullets and terrain
-        this.physics.add.collider(this.bulletGroup, terrainLayer, (bullet) => {bullet.destroy()})
+        this.physics.add.collider(this.bulletGroup, terrainLayer, (bullet) => {bulalet.destroy()})
 
         //players and bullets
         this.physics.add.collider(this.bulletGroup, this.playerGroup, (bullet, player) => {
@@ -119,10 +119,10 @@ class Play extends Phaser.Scene {
             player.hp -= 1
             this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
-            player.setTint('O#FF0000')
-            // setTimeout(() => {
-            //     player.setTint('#00000')
-            // }, 1000)
+            player.tint = '0xFF0000'
+            setTimeout(() => {
+                player.tint = '0xFFFFFF'
+            }, 200)
         })
 
         //players and lava
@@ -130,10 +130,10 @@ class Play extends Phaser.Scene {
             player.hp = 0
             this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
-            player.setTint('#FF0000')
+            player.tint = '0xFF0000'
             setTimeout(() => {
-                player.setTint('#00000')
-            }, 1000)
+                player.tint = '0xFFFFFF'
+            }, 200)
         })
 
         //players and robots
@@ -142,10 +142,10 @@ class Play extends Phaser.Scene {
             this.sound.play('hurt')
             player.hp -= 1
             player.hp_sprite.anims.play(`health_${player.hp}`)
-            player.setTint('#FF0000')
+            player.tint = '0xFF0000'
             setTimeout(() => {
-                player.setTint('#00000')
-            }, 1000)
+                player.tint = '0xFFFFFF'
+            }, 200)
         })
 
         //robots and bullets

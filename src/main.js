@@ -8,7 +8,7 @@
 
 
 let config = {
-    parent: 'gameView',
+    //parent: 'gameView',
     type: Phaser.AUTO,
     render: {
         pixelArt: true
@@ -16,14 +16,13 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            //debug: true,
             //gravity: { y: 1000 }
         }
     },
-    zoom: 2,
-    width: 288,
+    width: 336,
     height: 240,
-    scales: {
+    scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
@@ -43,5 +42,5 @@ let p2_score = 0
 
 
 //set global sizes
-let globalWidth = 288
+let globalWidth = 336
 let globalHeight = 240

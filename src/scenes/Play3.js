@@ -162,6 +162,10 @@ class Play3 extends Phaser.Scene {
             player.hp -= 1
             this.sound.play('hurt')
             player.hp_sprite.anims.play(`health_${player.hp}`)
+            player.tint = '0xFF0000'
+            setTimeout(() => {
+                player.tint = '0xFFFFFF'
+            }, 200)
         })
 
         //players and robots
@@ -170,6 +174,10 @@ class Play3 extends Phaser.Scene {
             this.sound.play('hurt')
             player.hp -= 1
             player.hp_sprite.anims.play(`health_${player.hp}`)
+            player.tint = '0xFF0000'
+            setTimeout(() => {
+                player.tint = '0xFFFFFF'
+            }, 200)
         })
 
         //robots and bullets

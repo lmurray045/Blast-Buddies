@@ -13,7 +13,7 @@
 [] add sources in code
 [x] scrolling enemies
 [] add tint on player damage
-[] format game window properly
+[X] format game window properly
 
 
 # Goal Post Two
