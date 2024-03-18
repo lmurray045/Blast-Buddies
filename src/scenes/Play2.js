@@ -166,10 +166,15 @@ class Play2 extends Phaser.Scene {
             }, 200)
         })
 
+        this.lava_damage = false
+
         //players and lava
         this.physics.add.collider(this.lavaGroup, this.playerGroup, (lava, player) => {
             player.hp = 0
-            this.sound.play('hurt')
+            if(this.lava_damage == false){
+                this.sound.play('hurt')
+                this.lava_damage = true
+            }
             player.hp_sprite.anims.play(`health_${player.hp}`)
             player.tint = '0xFF0000'
             setTimeout(() => {

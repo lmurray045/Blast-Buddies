@@ -15,6 +15,15 @@ class Play extends Phaser.Scene {
 
         this.ended = false
 
+        //music
+        this.sound.stopAll()
+        playing = false
+        this.music = this.sound.add('battlemusic', {
+            loop: true,
+            volume: 0.5
+        })
+        this.music.play()
+
         //resize windows
         game.scale.resize(336, 240)
         
@@ -111,7 +120,7 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.p2, terrainLayer)
 
         //bullets and terrain
-        this.physics.add.collider(this.bulletGroup, terrainLayer, (bullet) => {bulalet.destroy()})
+        this.physics.add.collider(this.bulletGroup, terrainLayer, (bullet) => {bullet.destroy()})
 
         //players and bullets
         this.physics.add.collider(this.bulletGroup, this.playerGroup, (bullet, player) => {
@@ -125,10 +134,15 @@ class Play extends Phaser.Scene {
             }, 200)
         })
 
+        this.lava_damage = false
+
         //players and lava
         this.physics.add.collider(this.lava, this.playerGroup, (lava, player) => {
             player.hp = 0
-            this.sound.play('hurt')
+            if(this.lava_damage == false){
+                this.sound.play('hurt')
+                this.lava_damage = true
+            }
             player.hp_sprite.anims.play(`health_${player.hp}`)
             player.tint = '0xFF0000'
             setTimeout(() => {

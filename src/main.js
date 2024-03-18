@@ -36,6 +36,9 @@ let cursors
 //load flag
 let loaded = false
 
+//music flags
+let playing = false
+
 //game scoring
 let p1_score = 0
 let p2_score = 0

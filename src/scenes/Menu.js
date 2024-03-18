@@ -6,10 +6,23 @@ class Menu extends Phaser.Scene {
     preload() {
         this.load.bitmapFont('dogica_font', 'assets/fonts/dogica.png', 'assets/fonts/dogica.xml')
         this.load.bitmapFont('dogica_reg_font', 'assets/fonts/dogica_reg.png', 'assets/fonts/dogica_reg.xml')
+        this.load.audio('menumusic', 'assets/menumusic.mp3')
+        this.load.audio('battlemusic', 'assets/battlemusic.mp3')
     }
 
     create() {
         console.log("menu scene")
+
+        //sound
+        if(playing == false){
+            this.sound.stopAll()
+            this.music = this.sound.add('menumusic', {
+                loop: true,
+                volume: 0.5
+            })
+            this.music.play()
+            playing = true
+        }
 
         //resize windows
         game.scale.resize(336, 240)

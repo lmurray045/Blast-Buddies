@@ -48,6 +48,9 @@ class Load extends Phaser.Scene {
         this.load.audio('jump', 'jump.wav')
         this.load.audio('hurt', 'hurt.wav')
         this.load.audio('shoot', 'shoot.wav')
+
+        this.load.audio('menumusic', 'menumusic.mp3')
+        this.load.audio('battlemusic', 'battlemusic.mp3')
     }
 
     create() {
@@ -232,7 +235,6 @@ class Load extends Phaser.Scene {
             repeat: -1
         })
 
-        console.log(this.anims)
 
     }
 

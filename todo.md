@@ -6,14 +6,16 @@
 [x] add two levels
     [x] level 2
     [x] level 3
-[] add background music
+[x] add background music
 [] add menu tweens
 [x] add credits
+    [x] update credits (when finished)
 [] update the player controls scene
 [] add sources in code
 [x] scrolling enemies
-[] add tint on player damage
+[x] add tint on player damage
 [X] format game window properly
+[] add level transitons
 
 
 # Goal Post Two

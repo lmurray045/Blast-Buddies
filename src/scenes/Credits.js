@@ -29,7 +29,7 @@ class Credits extends Phaser.Scene {
         //credits text
         this.add.bitmapText(globalWidth / 2, 40 , 'dogica_reg_font', 'Written and designed by Liam Murray', 12, 3).setOrigin(0.5)
         this.add.bitmapText(globalWidth / 2, 60 , 'dogica_reg_font', 'Based on "Breakfast Cheese" - Teen Titans Go', 10, 3).setOrigin(0.5)
-        this.add.bitmapText(globalWidth / 2, 130 , 'dogica_reg_font', 'Menu Music:\n\nGame Music:\n\nFont: "Dogica" by Roberto Mocci', 10, 3).setOrigin(0.5)
+        this.add.bitmapText(globalWidth / 2, 130 , 'dogica_reg_font', 'Menu Music - Oleksii Holubiev\n\nGame Music - "To the Death" by Ketyri\n\nFont: "Dogica" by Roberto Mocci', 10, 3).setOrigin(0.5)
         this.add.bitmapText(globalWidth / 2, 200 , 'dogica_reg_font', 'Created for CMPM 120', 10).setOrigin(0.5)
         this.add.bitmapText(globalWidth / 2, 230 , 'dogica_reg_font', 'Special Thanks to Nathan Altice for "teaching"', 10).setOrigin(0.5)
 
