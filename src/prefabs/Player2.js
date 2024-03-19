@@ -48,7 +48,6 @@ class Player2 extends Phaser.Physics.Arcade.Sprite {
 
 class Idle2State extends State {
     enter(scene, player) {
-        console.log('idle state')
         if(player.hp == 0) {
             this.stateMachine.transition('dead')
         }
@@ -87,7 +86,6 @@ class Idle2State extends State {
 
 class Run2State extends State {
     enter(scene, player) {
-        console.log("run state")
     }
 
     execute(scene, player) {
@@ -135,7 +133,6 @@ class Run2State extends State {
 
 class Jump2State extends State {
     enter(scene, player) {
-        console.log("jump state")
         scene.sound.play('jump')
         this.jumped1 = false
         this.jumped2 = false
@@ -195,7 +192,6 @@ class Jump2State extends State {
 
 class Shoot2State extends State {
     enter(scene, player) {
-        console.log("shoot state")
         scene.sound.play('shoot')
         if(player.hp == 0) {
             this.stateMachine.transition('dead')
@@ -219,7 +215,6 @@ class Shoot2State extends State {
 
 class RunShoot2State extends State {
     enter(scene, player) {
-        console.log("shoot state")
         scene.sound.play('shoot')
         if(player.hp == 0) {
             this.stateMachine.transition('dead')
@@ -243,7 +238,6 @@ class RunShoot2State extends State {
 
 class JumpShoot2State extends State {
     enter(scene, player) {
-        console.log("shoot state")
         scene.sound.play('shoot')
         if(player.hp == 0) {
             this.stateMachine.transition('dead')
@@ -268,7 +262,6 @@ class JumpShoot2State extends State {
 
 class Dead2State extends State {
     enter(scene, player) {
-        console.log("deadstate")
         player.setAlpha(0)
     }
 }

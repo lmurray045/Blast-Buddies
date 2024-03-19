@@ -21,7 +21,6 @@ class Controls extends Phaser.Scene {
     }
 
     create() {
-        console.log("controls scene")
 
         this.anims.create({
             key: "p1_example",

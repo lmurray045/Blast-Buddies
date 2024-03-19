@@ -48,7 +48,6 @@ class Player1 extends Phaser.Physics.Arcade.Sprite {
 
 class IdleState extends State {
     enter(scene, player) {
-        console.log('idle state')
         player.setAcceleration(0)
         player.anims.play(`p1_idle`, false)
         if(player.hp == 0) {
@@ -87,7 +86,6 @@ class IdleState extends State {
 
 class RunState extends State {
     enter(scene, player) {
-        console.log("run state")
     }
 
     execute(scene, player) {
@@ -134,7 +132,6 @@ class RunState extends State {
 
 class JumpState extends State {
     enter(scene, player) {
-        console.log("jump state")
         scene.sound.play('jump')
         this.jumped1 = false
         this.jumped2 = false
@@ -192,7 +189,6 @@ class JumpState extends State {
 
 class ShootState extends State {
     enter(scene, player) {
-        console.log("shoot state")
         scene.sound.play('shoot')
         //set cooldown
         if(player.hp == 0) {
@@ -224,7 +220,6 @@ class ShootState extends State {
 
 class RunShootState extends State {
     enter(scene, player) {
-        console.log("shoot state")
         scene.sound.play('shoot')
 
         if(player.hp == 0) {
@@ -255,8 +250,6 @@ class JumpShootState extends State {
         if(player.hp == 0) {
             this.stateMachine.transition('idle')
         }
-
-        console.log("shoot state")
         player.shotCheck = true
         player.anims.play("p1_shoot", true)
         let direction = 'left'
@@ -276,7 +269,6 @@ class JumpShootState extends State {
 
 class DeadState extends State {
     enter(scene, player) {
-        console.log("deadstate")
         player.anims.stop()
         player.setVelocity(0)
         player.setAlpha(0)

@@ -54,7 +54,6 @@ class Load extends Phaser.Scene {
     }
 
     create() {
-        console.log("Load Scene")
 
         //p1 Animations-------------------------------------------
 

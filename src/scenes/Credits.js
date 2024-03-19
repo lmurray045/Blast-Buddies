@@ -9,7 +9,6 @@ class Credits extends Phaser.Scene {
     }
 
     create() {
-        console.log("credits scene")
 
         //resize windows
         game.scale.resize(360, 300)

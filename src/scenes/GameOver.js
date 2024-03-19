@@ -4,7 +4,6 @@ class GameOver extends Phaser.Scene {
     }
 
     create() {
-        console.log("GameOver Scene")
         this.KEYS = this.scene.get('keyScene').KEYS
         //CITATION: This is also taken from Paddle Parkour
         // add snapshot image from prior Scene

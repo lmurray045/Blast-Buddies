@@ -4,6 +4,19 @@ class Menu extends Phaser.Scene {
     }
     
     preload() {
+        // loading bar
+        //taken from paddle parkour
+        // see: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/loader/
+        let loadingBar = this.add.graphics();
+        this.load.on('progress', (value) => {
+            loadingBar.clear();                                 // reset fill/line style
+            loadingBar.fillStyle(0xFFFFFF, 1);                  // (color, alpha)
+            loadingBar.fillRect(0, globalHeight / 2, globalWidth * value, 5);  // (x, y, w, h)
+        });
+        this.load.on('complete', () => {
+            loadingBar.destroy();
+        });
+
         this.load.bitmapFont('dogica_font', 'assets/fonts/dogica.png', 'assets/fonts/dogica.xml')
         this.load.bitmapFont('dogica_reg_font', 'assets/fonts/dogica_reg.png', 'assets/fonts/dogica_reg.xml')
         this.load.audio('menumusic', 'assets/menumusic.mp3')
@@ -19,11 +32,11 @@ class Menu extends Phaser.Scene {
     }
 
     create() {
-        console.log("menu scene")
         this.p1side = this.add.sprite(0, 0, "titlescreen", 0).setOrigin(1, 0)
         this.p2side = this.add.sprite(336, 0, "titlescreen", 1).setOrigin(0, 0)
 
         this.sound.stopAll()
+        playing = false
 
         //resize windows
         game.scale.resize(336, 240)
@@ -104,6 +117,7 @@ class Menu extends Phaser.Scene {
     update() {
         if(Phaser.Input.Keyboard.JustDown(this.KEYS.SPACE)){
             this.sound.stopAll()
+            playing = true
             let sound = this.sound.play('menuclick')
             if(loaded == false) {
                 this.scene.start('loadScene')

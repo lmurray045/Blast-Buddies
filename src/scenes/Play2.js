@@ -10,9 +10,7 @@ class Play2 extends Phaser.Scene {
         })
     }
 
-    create() {
-        console.log("Play2 Scene")
-        
+    create() {        
         this.ended = false
 
         

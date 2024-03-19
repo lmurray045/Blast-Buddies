@@ -25,6 +25,9 @@
         //in game over scene when the view port is screenshotted, that is taken from Nathan Altices "Paddle Parkour"
     //KEY SCENE UNDERLAY
         //the method of creating a key scene underlay was taken from StinOfSin: https://phaser.discourse.group/t/configure-keyboard-inputs-once-for-all-scenes-to-use/10470/6
+    //LOADING BAR
+        //taken from paddle parkour aswell
+
 
 
 let config = {

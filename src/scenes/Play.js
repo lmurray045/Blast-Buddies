@@ -11,7 +11,6 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        console.log("Play Scene")
 
         this.ended = false
 
