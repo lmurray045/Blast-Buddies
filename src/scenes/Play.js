@@ -15,15 +15,6 @@ class Play extends Phaser.Scene {
 
         this.ended = false
 
-        //music
-        this.sound.stopAll()
-        playing = false
-        this.music = this.sound.add('battlemusic', {
-            loop: true,
-            volume: 0.5
-        })
-        this.music.play()
-
         //resize windows
         game.scale.resize(336, 240)
         
@@ -44,6 +35,73 @@ class Play extends Phaser.Scene {
         //camera bounds
         this.cameras.main.setViewport(0, 0, map.widthInPixels, map.heightInPixels)
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+
+        this.active = false
+
+        let t1 = this.add.bitmapText(globalWidth / 2, (globalHeight / 2), 'dogica_font', '3', 30).setOrigin(0.5).setAlpha(0)
+        let t2 = this.add.bitmapText(globalWidth / 2, (globalHeight / 2), 'dogica_font', '2', 30).setOrigin(0.5).setAlpha(0)
+        let t3 = this.add.bitmapText(globalWidth / 2, (globalHeight / 2), 'dogica_font', '1', 30).setOrigin(0.5).setAlpha(0)
+        let t4 = this.add.bitmapText(globalWidth / 2, (globalHeight / 2), 'dogica_font', 'FIGHT', 30).setOrigin(0.5).setAlpha(0)
+
+        let playTween = this.tweens.chain({
+            tweens: [
+                {
+                    targets: t1,
+                    alpha: {from: 0, to: 1},
+                    duration: 100
+                },
+                {
+                    targets: t1,
+                    alpha: {from: 1, to: 0},
+                    scale: {from: 1, to: 0.1},
+                    duration: 1000
+                },
+                {
+                    targets: t2,
+                    alpha: {from: 0, to: 1},
+                    duration: 100
+                },
+                {
+                    targets: t2,
+                    alpha: {from: 1, to: 0},
+                    scale: {from: 1, to: 0.1},
+                    duration: 1000
+                },
+                {
+                    targets: t3,
+                    alpha: {from: 0, to: 1},
+                    duration: 100
+                },
+                {
+                    targets: t3,
+                    alpha: {from: 1, to: 0},
+                    scale: {from: 1, to: 0.1},
+                    duration: 1000
+                },
+                {
+                    targets: t4,
+                    alpha: {from: 0, to: 1},
+                    duration: 100
+                },
+                {
+                    targets: t4,
+                    alpha: {from: 1, to: 0},
+                    scale: {from: 1, to: 0.1},
+                    duration: 1000,
+                    onStart: () => {
+                        //music
+                        this.active = true
+                        this.sound.stopAll()
+                        playing = false
+                        this.music = this.sound.add('battlemusic', {
+                            loop: true,
+                            volume: 0.5
+                        })
+                        this.music.play()
+                    }
+                },
+            ]
+        })
 
         //add p1
         const p1spawn = map.findObject('objects', (obj) => obj.name === 'Player One')
@@ -167,6 +225,7 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.bulletGroup, this.enemyGroup, (bullet, robot) => {
             bullet.destroy()
             robot.destroy()
+            this.sound.play('hurt')
         })
 
         //robots and terrain
@@ -177,26 +236,28 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        this.player1FSM.step()
-        this.player2FSM.step()
-        this.robot1.update()
-        this.robot2.update()
-        if((this.p1.hp == 0 || this.p2.hp == 0) && this.ended == false) {
-            //game over text
-            this.add.bitmapText(game.config.width / 2, (game.config.height / 2) - 32, 'dogica_font', 'ROUND OVER', 20).setOrigin(0.5)
-            if(this.p1.hp == 0) {
-                p2_score += 1
-                this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'Player 2 WINS', 10).setOrigin(0.5)
-            }
-            else{
-                p1_score += 1
-                this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'Player 1 WINS', 10).setOrigin(0.5)
-            }
-            setTimeout(() => {
-                this.scene.start("play2Scene")
-            }, 5000)
+        if(this.active) {
+            this.player1FSM.step()
+            this.player2FSM.step()
+            this.robot1.update()
+            this.robot2.update()
+            if((this.p1.hp == 0 || this.p2.hp == 0) && this.ended == false) {
+                //game over text
+                this.add.bitmapText(game.config.width / 2, (game.config.height / 2) - 32, 'dogica_font', 'ROUND OVER', 20).setOrigin(0.5)
+                if(this.p1.hp == 0) {
+                    p2_score += 1
+                    this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'Player 2 WINS', 10).setOrigin(0.5)
+                }
+                else{
+                    p1_score += 1
+                    this.add.bitmapText(game.config.width / 2, (game.config.height / 2), 'dogica_font', 'Player 1 WINS', 10).setOrigin(0.5)
+                }
+                setTimeout(() => {
+                    this.scene.start("play2Scene")
+                }, 5000)
 
-            this.ended = true
+                this.ended = true
+            }
         }
     }
 

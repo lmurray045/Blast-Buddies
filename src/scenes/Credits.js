@@ -22,7 +22,7 @@ class Credits extends Phaser.Scene {
         this.KEYS = this.scene.get('keyScene').KEYS
 
         // add title text
-        this.add.bitmapText(globalWidth / 2, (globalHeight) - 10, 'dogica_font', 'Press R to return to Menu', 15).setOrigin(0.5)
+        this.add.bitmapText(globalWidth / 2, (globalHeight) - 10, 'dogica_font', 'Press R to return to Menu', 10).setOrigin(0.5)
         //this.add.bitmapText(game.config.width / 2, game.config.height / 2, 'dogica_font', 'Press SPACE to start', 15).setOrigin(0.5)
 
 

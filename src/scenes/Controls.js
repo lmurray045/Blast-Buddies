@@ -60,10 +60,12 @@ class Controls extends Phaser.Scene {
         this.p1.anims.play('p1_example', true)
 
         //p1 text
-        this.add.bitmapText(game.config.width / 4, (3 * game.config.height / 4) - 60, 'dogica_reg_font', 'A / D: Left/Right\n\nW: Jump\n\nE: Shoot', 9, 1).setOrigin(0.5)
+        this.add.bitmapText(game.config.width / 4, (3 * game.config.height / 4) - 110, 'dogica_reg_font', 'A / D: Left/Right\n\nW: Jump\n\nE: Shoot', 9, 1).setOrigin(0.5)
+
+        this.add.bitmapText(game.config.width / 2, (3 * game.config.height / 4) - 50, 'dogica_reg_font', 'Remember to use your double jump!', 10, 1).setOrigin(0.5)
 
         //p2 text
-        this.add.bitmapText(3* game.config.width / 4, (3 * game.config.height / 4) - 60, 'dogica_reg_font', '{- / -}: Left/Right\n\nUp Arrow: Jump\n\nSHIFT: Shoot', 9 , 1).setOrigin(0.5)
+        this.add.bitmapText(3* game.config.width / 4, (3 * game.config.height / 4) - 110, 'dogica_reg_font', '{- / -}: Left/Right\n\nUp Arrow: Jump\n\nSHIFT: Shoot', 9 , 1).setOrigin(0.5)
 
     }
 

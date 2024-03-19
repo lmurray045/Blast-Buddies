@@ -28,7 +28,8 @@ class GameOver extends Phaser.Scene {
 
     update() {
         if(Phaser.Input.Keyboard.JustDown(this.KEYS.MENU_R)){
-            this.scene.start('loadScene')
+            this.sound.stopAll()
+            this.scene.start('playScene')
         }
         if(Phaser.Input.Keyboard.JustDown(this.KEYS.MENU_M)){
             this.scene.start('menuScene')

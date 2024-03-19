@@ -15,7 +15,7 @@
 [x] scrolling enemies
 [x] add tint on player damage
 [X] format game window properly
-[] add level transitons
+[X] add level transitons
 
 
 # Goal Post Two

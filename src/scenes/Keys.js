@@ -1,3 +1,6 @@
+//KEY SCENE UNDERLAY
+        //the method of creating a key scene underlay was taken from StinOfSin: https://phaser.discourse.group/t/configure-keyboard-inputs-once-for-all-scenes-to-use/10470/6
+
 class Keys extends Phaser.Scene {
     constructor() {
         super('keyScene')

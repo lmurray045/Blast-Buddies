@@ -1,10 +1,30 @@
 //Liam Murray
 //Blast Buddies
-//Description:
-//total hours: 30
+//Description: A two player competative platform shooter.
+    //Battle to the death to determine who is superior!
+
+//Major Systems
+    //Arcade Physics Engine (acceleration based)
+    //Tweens
+    //animation manager
+    //tilemaps
+    //bitmap text objects
+    //screen captures
+    //page formatting
+    //music and sfx
+
+//polish and style
+    //I am really proud of the menu sequence and start game transitions!
+
+//total hours: 50ish?
+
 //Citations: 
     //STATE MACHINE CODE    
         //statemachine.js is taken from professor Altices "CP-Scrolling-States" repositiory
+    //SCREENSHOT CODE
+        //in game over scene when the view port is screenshotted, that is taken from Nathan Altices "Paddle Parkour"
+    //KEY SCENE UNDERLAY
+        //the method of creating a key scene underlay was taken from StinOfSin: https://phaser.discourse.group/t/configure-keyboard-inputs-once-for-all-scenes-to-use/10470/6
 
 
 let config = {

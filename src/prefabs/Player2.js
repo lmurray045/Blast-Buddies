@@ -43,6 +43,9 @@ class Player2 extends Phaser.Physics.Arcade.Sprite {
     }
 }
 
+//STATE MACHINE CODE    
+        //statemachine.js is taken from professor Altices "CP-Scrolling-States" repositiory
+
 class Idle2State extends State {
     enter(scene, player) {
         console.log('idle state')

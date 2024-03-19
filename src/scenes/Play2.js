@@ -199,6 +199,7 @@ class Play2 extends Phaser.Scene {
         this.physics.add.collider(this.bulletGroup, this.enemyGroup, (bullet, robot) => {
             bullet.destroy()
             robot.destroy()
+            this.sound.play('hurt')
         })
 
         //robots and terrain
